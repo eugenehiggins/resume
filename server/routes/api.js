@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
+const rxFirebase = require('rx-firebase');
 const firebase = require('firebase');
+const rx = require('rxjs');
 
 // axios makes http request
 const axios = require('axios');
