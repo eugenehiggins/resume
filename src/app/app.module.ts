@@ -8,6 +8,10 @@ import { PostsComponent } from './posts/posts.component';
 import { RouterModule } from "@angular/router";
 import { PostsService } from "./posts.service";
 import { HomepageComponent } from './homepage/homepage.component';
+import { ContactComponent } from './homepage/contact/contact.component';
+import { AngularFireModule } from 'angularfire2';
+import { environment } from '../environments/environment';
+import { FirebaseService } from "./services/firebase.service";
 
 const ROUTES = [
   {
@@ -20,15 +24,20 @@ const ROUTES = [
   declarations: [
     AppComponent,
     PostsComponent,
-    HomepageComponent
+    HomepageComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
+    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(ROUTES)
   ],
-  providers: [PostsService],
+  providers: [
+    PostsService,
+    FirebaseService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
