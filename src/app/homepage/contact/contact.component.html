@@ -1,4 +1,10 @@
-<p>
-  contact works!
-  does it?
-</p>
+<h2>Contact info</h2>
+<form [formGroup]="contactForm">
+  <div class="form-group row">
+    <label for="address1" class="col-2 col-form-label">Address</label>
+    <div class="col-10">
+      <input type="text" formControlName="address1" id="address1" class="form-control">
+    </div>
+
+  </div>
+</form>
