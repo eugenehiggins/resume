@@ -7,23 +7,20 @@ import { AppComponent } from './app.component';
 import { PostsComponent } from './posts/posts.component';
 import { RouterModule } from "@angular/router";
 import { PostsService } from "./posts.service";
+import { HomepageComponent } from './homepage/homepage.component';
 
 const ROUTES = [
   {
     path: '',
-    redirectTo: 'posts',
-    pathMatch: 'full'
-  },
-  {
-    path: 'posts',
-    component: PostsComponent
+    component: HomepageComponent
   }
 ];
 
 @NgModule({
   declarations: [
     AppComponent,
-    PostsComponent
+    PostsComponent,
+    HomepageComponent
   ],
   imports: [
     BrowserModule,
