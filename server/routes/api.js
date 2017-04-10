@@ -4,6 +4,9 @@ const rxFirebase = require('rx-firebase');
 const firebase = require('firebase');
 const rx = require('rxjs');
 
+rxFirebase.extend(firebase, rx.Observable);
+let subject = new rx.Subject();
+
 // axios makes http request
 const axios = require('axios');
 const API = 'https://jsonplaceholder.typicode.com';
@@ -40,15 +43,12 @@ router.get('/posts', (req,res) => {
 // get contact info
 router.get('/contact', (req,res) => {
   "use strict";
-  const contactInfo = firebase.database().ref('/resume/contact')
-    .once('value').then( data => {
-      res.status(200).json(data);
-      //snapshot.map( x => x.json());
-    })
-    .catch(error => {
-      res.status(500).send(error);
-    })
-  ;
+  const contactInfo = firebase.database().ref('/resume/contact');
+
+  contactInfo.once('value')
+    .then (contact => {
+      res.status(200).json(contact)
+    });
 })
 
 module.exports = router;

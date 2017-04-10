@@ -1,9 +1,10 @@
 <h2>Contact info</h2>
 <form [formGroup]="contactForm">
-  <div class="form-group row">
-    <label for="address1" class="col-2 col-form-label">Address</label>
-    <div class="col-10">
-      <input type="text" formControlName="address1" id="address1" class="form-control">
+
+  <div class="form-group row" >
+    <label for="address1" (click)="onClick($event)" class="col-12 col-form-label shownElement">{{ contactInfo?.address1 }}</label>
+    <div class="col-12 hiddenElement" >
+      <input type="text"  formControlName="address1" id="address1" class="form-control" >
     </div>
 
   </div>
