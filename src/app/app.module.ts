@@ -12,6 +12,7 @@ import { ContactComponent } from './homepage/contact/contact.component';
 import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { FirebaseService } from "./services/firebase.service";
+import { InlineEditDirective } from './inline-edit.directive';
 
 const ROUTES = [
   {
@@ -25,7 +26,8 @@ const ROUTES = [
     AppComponent,
     PostsComponent,
     HomepageComponent,
-    ContactComponent
+    ContactComponent,
+    InlineEditDirective
   ],
   imports: [
     BrowserModule,

@@ -2,9 +2,9 @@
 <form [formGroup]="contactForm">
 
   <div class="form-group row" >
-    <label for="address1" (click)="onClick($event)" class="col-12 col-form-label shownElement">{{ contactInfo?.address1 }}</label>
-    <div class="col-12 hiddenElement" >
-      <input type="text"  formControlName="address1" id="address1" class="form-control" >
+    <label for="address1" (click)="onClick($event)" class="col-12 col-form-label ">{{ contactInfo?.address1 }}</label>
+    <div class="col-12 " >
+      <input type="text" inlineEdit formControlName="address1" id="address1" class="form-control" readonly >
     </div>
 
   </div>
