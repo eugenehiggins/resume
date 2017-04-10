@@ -12,7 +12,7 @@ export class InlineEditDirective {
   }
 
   @HostListener('click') onClick(){
-    console.log(this.nativeElement);
+    console.log(this.element.nativeElement.value);
     this.renderer.removeAttribute(this.nativeElement, 'readonly')
   }
 
