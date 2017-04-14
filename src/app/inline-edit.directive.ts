@@ -9,14 +9,15 @@ export class InlineEditDirective {
 
   constructor(private renderer: Renderer2, private element: ElementRef) {
     this.nativeElement = element.nativeElement;
+
   }
 
   @HostListener('click') onClick(){
-    console.log(this.element.nativeElement.value);
-    this.renderer.removeAttribute(this.nativeElement, 'readonly')
+    // this.renderer.removeAttribute(this.nativeElement, 'readonly')
+    this.renderer.removeClass(this.nativeElement, 'form-control-static')
   }
 
   @HostListener('blur') onBlur(){
-    this.renderer.setAttribute(this.nativeElement, 'readonly', '')
+    this.renderer.addClass(this.nativeElement, 'form-control-static')
   }
 }

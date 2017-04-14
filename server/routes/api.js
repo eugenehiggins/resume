@@ -3,6 +3,10 @@ const router = express.Router();
 const rxFirebase = require('rx-firebase');
 const firebase = require('firebase');
 const rx = require('rxjs');
+// const bodyParser = require('body-parser');
+//
+// app.use(bodyParser.json());
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 rxFirebase.extend(firebase, rx.Observable);
 let subject = new rx.Subject();
@@ -49,6 +53,51 @@ router.get('/contact', (req,res) => {
     .then (contact => {
       res.status(200).json(contact)
     });
+})
+
+
+router.post('/contact/', (req,res) => {
+  "use strict";
+  const _field = req.body.field;
+  const _value = req.body.value;
+
+  let postData = {};
+  postData[_field] = _value;
+
+  let updates = {};
+  updates['/resume/contact/' + _field] = _value;
+  return firebase.database().ref().update(updates)
+    .then ( contact => {
+      res.status(200).json(contact)
+    })
+
+})
+
+// get summary
+router.get('/summary', (req,res) => {
+  "use strict";
+  const contactInfo = firebase.database().ref('/resume/summary');
+
+  contactInfo.once('value')
+    .then (summary => {
+      res.status(200).json(summary)
+    });
+})
+
+router.post('/summary/', (req,res) => {
+  "use strict";
+  const summary = req.body.summary;
+
+  let postData = {};
+  postData['summary'] = summary;
+
+  let updates = {};
+  updates['/resume/summary'] = postData;
+  return firebase.database().ref().update(updates)
+    .then ( contact => {
+      res.status(200).json(contact)
+    })
+
 })
 
 module.exports = router;

@@ -1,0 +1,12 @@
+<form [formGroup]="summaryForm" class="contact col-6">
+
+  <div class="form-group row" >
+    <label for="summary" class="col-12 col-form-label h2">Summary</label>
+    <div class="col-12 " >
+      <textarea rows="5" type="text" inlineEdit (blur)=onBlur($event) formControlName="summary" id="summary" class="form-control form-control-static">
+
+      </textarea>
+    </div>
+
+  </div>
+</form>

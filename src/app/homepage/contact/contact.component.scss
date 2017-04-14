@@ -1,9 +1,33 @@
 
-  div {
-    .hiddenElement {
-      display: none;
+  //div {
+  //  .hiddenElement {
+  //    display: none;
+  //  }
+  //  .shownElement {
+  //    display: block;
+  //  }
+  //}
+
+  .contact {
+    div:not(:first-child) {
+      .form-control {
+        padding: inherit;
+      }
     }
-    .shownElement {
-      display: block;
-    }
+
   }
+
+  .h2 {
+    font-size: 2rem;
+  }
+
+  #city {
+    width:20em;
+  }
+  #state {
+    width: 4em;
+  }
+  #zip {
+    width: 5em;
+  }
+

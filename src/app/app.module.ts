@@ -13,6 +13,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { FirebaseService } from "./services/firebase.service";
 import { InlineEditDirective } from './inline-edit.directive';
+import { SummaryComponent } from './homepage/summary/summary.component';
 
 const ROUTES = [
   {
@@ -27,7 +28,8 @@ const ROUTES = [
     PostsComponent,
     HomepageComponent,
     ContactComponent,
-    InlineEditDirective
+    InlineEditDirective,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,
