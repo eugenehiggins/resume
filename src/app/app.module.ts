@@ -14,6 +14,8 @@ import { environment } from '../environments/environment';
 import { FirebaseService } from "./services/firebase.service";
 import { InlineEditDirective } from './inline-edit.directive';
 import { SummaryComponent } from './homepage/summary/summary.component';
+import { ExperienceComponent } from './homepage/experience/experience.component';
+import { ExperienceControlService } from "./services/experience-control.service";
 
 const ROUTES = [
   {
@@ -29,7 +31,8 @@ const ROUTES = [
     HomepageComponent,
     ContactComponent,
     InlineEditDirective,
-    SummaryComponent
+    SummaryComponent,
+    ExperienceComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +44,8 @@ const ROUTES = [
   ],
   providers: [
     PostsService,
-    FirebaseService
+    FirebaseService,
+    ExperienceControlService
   ],
   bootstrap: [AppComponent]
 })

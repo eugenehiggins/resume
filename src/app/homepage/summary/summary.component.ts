@@ -25,7 +25,6 @@ export class SummaryComponent implements OnInit {
 
     this.firebaseService.getSummary()
       .subscribe( data => {
-        console.log(data.summary);
         this.summaryForm.setValue({
           summary: data.summary
         })
@@ -33,9 +32,6 @@ export class SummaryComponent implements OnInit {
   }
 
   onBlur(event) {
-    let el = this.el.nativeElement = event.target;
-    let name = el.id;
-    let value = el.value;
     this.firebaseService.setSummary(event.target.value)
       .subscribe(
         status => {
