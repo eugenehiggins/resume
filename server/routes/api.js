@@ -26,6 +26,7 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+
 // GET api listing
 router.get('/', (req,res) => {
   "use strict";
@@ -42,7 +43,7 @@ router.get('/posts', (req,res) => {
     .catch(error => {
       res.status(500).send(error);
     })
-})
+});
 
 // get contact info
 router.get('/contact', (req,res) => {
@@ -53,7 +54,7 @@ router.get('/contact', (req,res) => {
     .then (contact => {
       res.status(200).json(contact)
     });
-})
+});
 
 
 router.post('/contact/', (req,res) => {
@@ -71,7 +72,7 @@ router.post('/contact/', (req,res) => {
       res.status(200).json(contact)
     })
 
-})
+});
 
 // get summary
 router.get('/summary', (req,res) => {
@@ -82,22 +83,40 @@ router.get('/summary', (req,res) => {
     .then (summary => {
       res.status(200).json(summary)
     });
-})
+});
 
 router.post('/summary/', (req,res) => {
   "use strict";
   const summary = req.body.summary;
-
-  let postData = {};
-  postData['summary'] = summary;
-
   let updates = {};
-  updates['/resume/summary'] = postData;
+  updates['/resume/summary'] = summary;
   return firebase.database().ref().update(updates)
     .then ( contact => {
       res.status(200).json(contact)
     })
 
-})
+});
+
+
+router.post('/experiences/', (req,res) => {
+  "use strict";
+  console.log('this is experiences post route');
+  // const postData = {
+  //   companyName: "CNM",
+  //   jobTitle: "Web developer II",
+  //   yearsWorked: 3
+  // }
+  //
+  // const newPostKey = firebase.database().ref().child('resume/experiences').push().key;
+  //
+  // let updates = {};
+  // updates['/resume/experiences/' + newPostKey] = postData;
+  //
+  // return firebase.database().ref().update(updates)
+  //   .then( reply => {
+  //     res.status(200).json(reply)
+  //   })
+  //const experience = req.body.experience;
+});
 
 module.exports = router;

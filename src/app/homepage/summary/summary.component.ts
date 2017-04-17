@@ -26,7 +26,7 @@ export class SummaryComponent implements OnInit {
     this.firebaseService.getSummary()
       .subscribe( data => {
         this.summaryForm.setValue({
-          summary: data.summary
+          summary: data
         })
       });
   }
@@ -36,7 +36,6 @@ export class SummaryComponent implements OnInit {
       .subscribe(
         status => {
           if (status === 200) {
-            console.log('howdy');
           }
         }
       );
@@ -44,7 +43,7 @@ export class SummaryComponent implements OnInit {
 
   createForm(){
     this.summaryForm = this.fb.group ({
-      summary: ['', Validators.required]
+      summary: ''
     })
   }
 }

@@ -43,4 +43,16 @@ export class FirebaseService {
     return this.http.post('api/summary/', body, options)
       .map(res => res.status);
   }
+
+  setExperience(obj) {
+    // const companyName = obj.companyName;
+    // const jobTitle = obj.jobTitle;
+    // const yearsWorked = obj.yearsWorked;
+    let body : string = JSON.stringify({ summary : "well hello" });
+    let headers = new Headers({ 'content-type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.post('api/experiences', obj, options)
+      .map( res => console.log(res.status));
+
+  }
 }

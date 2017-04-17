@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { ExperienceService } from './experience-control.service';
+import { ExperienceControlService } from './experience-control.service';
 
-describe('ExperienceService', () => {
+describe('ExperienceControlService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [ExperienceService]
+      providers: [ExperienceControlService]
     });
   });
 
-  it('should ...', inject([ExperienceService], (service: ExperienceService) => {
+  it('should ...', inject([ExperienceControlService], (service: ExperienceControlService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -8,12 +8,12 @@ import { ExperienceControlService } from "../services/experience-control.service
 })
 export class HomepageComponent implements OnInit {
 
-  experiences: any[];
+  //experiences: any[];
 
   constructor(private experiencesService: ExperienceControlService) { }
 
   ngOnInit() {
-    this.experiences = this.experiencesService.getExperiences();
+    //this.experiences = this.experiencesService.buildExperience();
   }
 
 

@@ -1,39 +1,58 @@
 import { Injectable } from '@angular/core';
-import { ExpBaseModel } from "../homepage/experience/exp.base.model";
 import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { ExpTextModel } from "../homepage/experience/exp.text.model";
+import { FieldBaseModel } from "../homepage/experiences/field-base.model";
+import { FieldTextboxModel } from "../homepage/experiences/field-textbox.model";
+import { FieldDropdownModel } from "../homepage/experiences/field-dropdown.model";
 
 @Injectable()
 export class ExperienceControlService {
 
   constructor() { }
 
-  toFormGroup(experiences: ExpBaseModel<any>[]) {
+  toFormGroup(fields: FieldBaseModel<any>[]) {
     let group: any = {};
 
-    experiences.forEach( exp => {
+    fields.forEach( exp => {
       group[exp.key] = exp.required ? new FormControl(exp.value, Validators.required)
                                     : new FormControl(exp.value);
     })
     return new FormGroup(group);
   }
 
-  // Todo: get from a remote source of experience metadata
+  // Todo: get from a remote source of experiences metadata
   // Todo: make asynchronous
-  getExperiences() {
-    let experiences: ExpBaseModel<any>[] = [
-      new ExpTextModel({
-        key: 'firstName',
-        label: 'First name',
-        value: 'Bombasto',
-        companyName: 'CNM',
-        positionTitle: 'Web Developer II',
+  buildExperience() {
+    let fields: FieldBaseModel<any>[] = [
+      new FieldTextboxModel({
+        key: 'companyName',
+        label: 'Company name',
+        value: 'CNM',
         required: true,
         order: 1
       }),
+      new FieldDropdownModel({
+        key: 'yearsWorked',
+        label: 'Years worked',
+        options: [
+          {key: '1',  value: '1'},
+          {key: '2',  value: '2'},
+          {key: '3',   value: '3'},
+          {key: '4',   value: '4'},
+          {key: '5',   value: '5'},
+          {key: 'infinite', value: 'infinite'}
+        ],
+        order: 3
+      }),
+      new FieldTextboxModel({
+        key: 'jobTitle',
+        label: 'Job title',
+        value: 'Web Developer II',
+        required: true,
+        order: 2
+      }),
     ];
 
-    return experiences.sort((a, b) => a.order - b.order);
+    return fields.sort((a, b) => a.order - b.order);
   }
 
 }
