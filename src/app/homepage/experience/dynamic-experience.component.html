@@ -1,0 +1,13 @@
+
+<div [formGroup]="form" class="">
+  <!--<label [attr.for]="experience.key"> {{ experience.label }}</label>-->
+  <h3></h3>
+  <div [ngSwitch]="experience.controlType" class="form-group row col-12">
+    <input *ngSwitchCase="'textBox'"
+           class="form-control form-control-static"
+           [formControlName]="experience.key"
+           [id]="experience.key">
+  </div>
+
+  <div class="errorMessage" *ngIf="!isValid">{{ experience.label }} is required</div>
+</div>

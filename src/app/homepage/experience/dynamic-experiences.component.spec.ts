@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ExperienceComponent } from './experiences-form.component';
+import { DynamicExperiencesComponent } from './dynamic-experience.component';
 
-describe('ExperienceComponent', () => {
-  let component: ExperienceComponent;
-  let fixture: ComponentFixture<ExperienceComponent>;
+describe('DynamicExperiencesComponent', () => {
+  let component: DynamicExperiencesComponent;
+  let fixture: ComponentFixture<DynamicExperiencesComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ExperienceComponent ]
+      declarations: [ DynamicExperiencesComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ExperienceComponent);
+    fixture = TestBed.createComponent(DynamicExperiencesComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -14,8 +14,9 @@ import { environment } from '../environments/environment';
 import { FirebaseService } from "./services/firebase.service";
 import { InlineEditDirective } from './inline-edit.directive';
 import { SummaryComponent } from './homepage/summary/summary.component';
-import { ExperienceComponent } from './homepage/experience/experience.component';
+import { ExperiencesFormComponent } from './homepage/experience/experiences-form.component';
 import { ExperienceControlService } from "./services/experience-control.service";
+import { DynamicExperienceComponent } from './homepage/experience/dynamic-experience.component';
 
 const ROUTES = [
   {
@@ -32,7 +33,8 @@ const ROUTES = [
     ContactComponent,
     InlineEditDirective,
     SummaryComponent,
-    ExperienceComponent
+    ExperiencesFormComponent,
+    DynamicExperienceComponent
   ],
   imports: [
     BrowserModule,

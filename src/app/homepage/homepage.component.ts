@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ExperienceControlService } from "../services/experience-control.service";
 
 @Component({
   selector: 'homepage',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomepageComponent implements OnInit {
 
-  constructor() { }
+  experiences: any[];
+
+  constructor(private experiencesService: ExperienceControlService) { }
 
   ngOnInit() {
+    this.experiences = this.experiencesService.getExperiences();
   }
+
+
 
 
 }
