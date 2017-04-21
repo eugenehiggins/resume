@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FieldBaseModel } from "./field-base.model";
-import { FormGroup } from "@angular/forms";
+import { Form, FormArray, FormGroup } from "@angular/forms";
 import { ExperienceControlService } from "../../services/experience-control.service";
 import { FirebaseService } from "../../services/firebase.service";
 
@@ -15,7 +15,7 @@ export class DynamicFormComponent implements OnInit {
   fields: FieldBaseModel<any>[] = [];
   form: FormGroup;
   payLoad = '';
-  experiences = [];
+  experiences: FormArray;
 
   constructor(
     private ecs: ExperienceControlService,
@@ -25,14 +25,18 @@ export class DynamicFormComponent implements OnInit {
   ngOnInit() {
     // TODO: make getting fields async
     this.fields = this.ecs.buildExperience();
-    // this.ecs.getExperiences();
-    this.firebaseService.getExperiences()
+    this.ecs.buildExperienceAsync()
       .subscribe( data => {
         this.experiences = data;
-        console.log(this.experiences);
-      })
+        this.form.setControl('experiences', this.experiences);
+      });
+    // this.firebaseService.getExperiences()
+    //   .subscribe( data => {
+    //     this.experiences = data;
+    //   })
 
-    this.form = this.ecs.toFormGroup(this.fields);
+    //this.form = this.ecs.toFormGroup(this.fields);
+    //console.log(this.form);
 
   }
 

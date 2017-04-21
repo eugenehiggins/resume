@@ -24,12 +24,6 @@ export class ContactComponent implements OnInit {
     this.createForm();
   }
 
-  onClick(event) {
-    // event.target.setAttribute('class', 'hiddenElement');
-    // let labelFor = event.target.getAttribute('for');
-    // let control = this.contactForm.get(labelFor);
-    // control.setAttribute('class', 'shownElement');
-  }
 
   onBlur(event) {
     let el = this.el.nativeElement = event.target;
