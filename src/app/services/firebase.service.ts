@@ -45,14 +45,25 @@ export class FirebaseService {
   }
 
   setExperience(obj) {
+    let experience = {
+      companyName: obj.companyName,
+      jobTitle: obj.jobTitle,
+      yearsWorked: obj.yearsWorked
+    }
     // const companyName = obj.companyName;
     // const jobTitle = obj.jobTitle;
     // const yearsWorked = obj.yearsWorked;
     let body : string = JSON.stringify({ summary : "well hello" });
     let headers = new Headers({ 'content-type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
-    return this.http.post('api/experiences', obj, options)
-      .map( res => console.log(res.status));
+    return this.http.post('api/experiences', experience, options)
+      .map( res => res.status);
+  }
 
+  getExperiences() {
+
+    return this.http.get('api/experiences')
+      .map( res => res.json() );
+      //.subscribe( x => console.log(x))
   }
 }

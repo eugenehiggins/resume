@@ -3,11 +3,13 @@ import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { FieldBaseModel } from "../homepage/experiences/field-base.model";
 import { FieldTextboxModel } from "../homepage/experiences/field-textbox.model";
 import { FieldDropdownModel } from "../homepage/experiences/field-dropdown.model";
+import { FirebaseService } from "./firebase.service";
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class ExperienceControlService {
 
-  constructor() { }
+  constructor(private firebaseService: FirebaseService) { }
 
   toFormGroup(fields: FieldBaseModel<any>[]) {
     let group: any = {};
@@ -17,6 +19,16 @@ export class ExperienceControlService {
                                     : new FormControl(exp.value);
     })
     return new FormGroup(group);
+  }
+
+  buildExperienceAsync() {
+    let fields: FieldBaseModel<any>[] = [];
+    this.firebaseService.getExperiences()
+      .subscribe( experiences => {
+        return experiences;
+      })
+
+
   }
 
   // Todo: get from a remote source of experiences metadata

@@ -100,23 +100,32 @@ router.post('/summary/', (req,res) => {
 
 router.post('/experiences/', (req,res) => {
   "use strict";
-  console.log('this is experiences post route');
-  // const postData = {
-  //   companyName: "CNM",
-  //   jobTitle: "Web developer II",
-  //   yearsWorked: 3
-  // }
-  //
-  // const newPostKey = firebase.database().ref().child('resume/experiences').push().key;
-  //
-  // let updates = {};
-  // updates['/resume/experiences/' + newPostKey] = postData;
-  //
-  // return firebase.database().ref().update(updates)
-  //   .then( reply => {
-  //     res.status(200).json(reply)
-  //   })
-  //const experience = req.body.experience;
+
+  const postData = {
+    companyName: "CNM",
+    jobTitle: "Web developer II",
+    yearsWorked: 3
+  }
+
+  const newPostKey = firebase.database().ref().child('resume/experiences').push().key;
+
+  let updates = {};
+  updates['/resume/experiences/' + newPostKey] = req.body;
+
+  return firebase.database().ref().update(updates)
+    .then( reply => {
+      res.status(200).json(reply)
+    })
+});
+
+router.get('/experiences/', (req,res) => {
+  "use strict";
+  let ref = firebase.database().ref('/resume/experiences')
+  ref.once('value')
+    .then (experiences => {
+      res.status(200).json(experiences)
+    });
+
 });
 
 module.exports = router;
