@@ -32,8 +32,8 @@ export class ExperienceControlService {
 
   buildExperienceAsync() {
 
+    // let experiences = [];
     let experiences = this.fb.array([]);
-
     return this.firebaseService.getExperiences()
       .map(data => {
         // get all experiences and create an array of them
@@ -88,7 +88,6 @@ export class ExperienceControlService {
           fields.sort((a, b) => a.order - b.order);
           experiences.push(this.toFormGroup(fields));
         })
-        console.log(experiences)
         //let x: FormArray = experiences;
         // convert experiences
         return experiences;

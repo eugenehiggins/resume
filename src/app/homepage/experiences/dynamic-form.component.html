@@ -1,10 +1,11 @@
 <div>
-  <form  [formGroup]="form">
-    <div formArrayName="experiences" >
-      <div *ngFor="let field of fields" class="form-row">
-        <df-field [field]="field" [form]="form"></df-field>
-      </div>
-    </div>
+  <form [formGroup]="form">
+      <!--<div *ngFor="let xp of experiences.controls">-->
+          <div *ngFor="let field of fields" class="form-row">
+            <df-field [field]="field" [form]="form"></df-field>
+          </div>
+
+      <!--</div>-->
     <div class="form-row">
       <button (click)="saveExperience()" [disabled]="!form.valid">Save</button>
     </div>

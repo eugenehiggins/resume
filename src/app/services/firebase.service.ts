@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from "@angular/http";
 import { AngularFire, FirebaseObjectObservable } from "angularfire2";
 import { Observable } from "rxjs/Observable";
+import 'rxjs/add/operator/share';
 import { Contact } from "../homepage/contact/contact.model";
 
 @Injectable()
@@ -61,9 +62,9 @@ export class FirebaseService {
   }
 
   getExperiences() {
-
     return this.http.get('api/experiences')
-      .map( res => res.json() );
+      .share()
+      .map( res => res.json())
       //.subscribe( x => console.log(x))
   }
 }
