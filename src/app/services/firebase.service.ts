@@ -63,7 +63,6 @@ export class FirebaseService {
 
   getExperiences() {
     return this.http.get('api/experiences')
-      .share()
       .map( res => res.json())
       //.subscribe( x => console.log(x))
   }

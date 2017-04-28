@@ -1,23 +1,24 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl, FormGroup } from '@angular/forms';
+import {FirebaseService} from "../../services/firebase.service";
 
 
 @Component({
   selector: 'test-formarray',
   template: `
-    <form [formGroup]="form" (ngSubmit)="onSubmit()">
-      <div formArrayName="cities">
-        <div *ngFor="let city of cities.controls; let i=index">
-          <input [formControlName]="i" placeholder="City">
-        </div>
-      </div>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()" >
+      <!--<div formArrayName="cities">-->
+        <!--<div *ngFor="let city of cities.controls; let i=index">-->
+          <!--<input [formControlName]="i" placeholder="City">-->
+        <!--</div>-->
+      <!--</div>-->
       <div formArrayName="experiences">
         <div *ngFor="let exp of experiences.controls; let n=index">
-          <div formGroupName="{{n}}">
-            <div *ngFor="let e of expArray[n] | keys">
-              <input [formControlName]="e" placeholder="Experience">
-            </div>
-          </div>
+          <ul formGroupName="{{n}}" class="form-inline">
+            <li *ngFor="let e of expArray[n] | keys" class="form-group">
+              <input [formControlName]="e" placeholder="Experience" class="form-control form-control-static">
+            </li>
+          </ul>
         </div>
       </div>
       <button>Submit</button>
@@ -70,8 +71,9 @@ export class TestFormarrayComponent implements OnInit {
     this.cities.patchValue(['LA', 'MTV']);
   }
 
-  constructor() {
-
+  constructor(private firebaseService: FirebaseService) {
+    firebaseService.getExperiences()
+      .subscribe( x => console.log(x))
   }
 
   ngOnInit() {
