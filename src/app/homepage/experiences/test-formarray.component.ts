@@ -14,7 +14,7 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
       <div formArrayName="experiences">
         <div *ngFor="let exp of experiences.controls; let n=index">
           <div formGroupName="{{n}}">
-            <div *ngFor="let e of expArray | keys">
+            <div *ngFor="let e of expArray[n] | keys">
               <input [formControlName]="e" placeholder="Experience">
             </div>
           </div>
@@ -32,12 +32,18 @@ import { FormArray, FormControl, FormGroup } from '@angular/forms';
 })
 export class TestFormarrayComponent implements OnInit {
 
-  expArray =
+  expArray = [
     {
       "companyName": "CNM",
       "jobTitle": "Web developer II",
       "yearsWorked": 3
+    },
+    {
+      "companyName": "APS",
+      "jobTitle": "Course designer",
+      "yearsWorked": 2
     }
+]
 
 
 
@@ -69,15 +75,16 @@ export class TestFormarrayComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('onInit')
 
-    let fg: any = {};
+    for (let experience in this.expArray ) {
+      let fg: any = {};
+      for (let control in this.expArray[experience]) {
+        // change here to read the object properties
+        fg[control] = new FormControl(this.expArray[experience][control])
+      }
 
-    for (let control in this.expArray) {
-      fg[control] = new FormControl(this.expArray[control])
+      this.experiences.push(new FormGroup(fg))
     }
-
-    this.experiences.push(new FormGroup(fg))
   }
 
   form = new FormGroup({
