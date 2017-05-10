@@ -28,6 +28,7 @@ export class SummaryComponent implements OnInit {
         this.summaryForm.setValue({
           summary: data
         })
+        console.log(this.summaryForm.get('summary').style)
       });
   }
 

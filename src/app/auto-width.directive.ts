@@ -17,11 +17,12 @@ export class AutoWidthDirective {
 
     switch (this.nativeElement.nodeName) {
       case "INPUT": {
-        console.log(this.nativeElement.nodeName, (<HTMLInputElement>this.nativeElement).value)
+        console.log(this.nativeElement.nodeName, (<HTMLInputElement>this.nativeElement).width)
         break;
       }
       case "TEXTAREA": {
-        console.log(this.nativeElement.nodeName, (<HTMLTextAreaElement>this.nativeElement).value)
+        const scrollHeight = (<HTMLTextAreaElement>this.nativeElement).scrollHeight;
+        this.renderer.setStyle(this.nativeElement, 'height', scrollHeight + 'px')
         break;
       }
     }
