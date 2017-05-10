@@ -13,6 +13,7 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { FirebaseService } from "./services/firebase.service";
 import { InlineEditDirective } from './inline-edit.directive';
+import { AutoWidthDirective } from "./auto-width.directive";
 import { SummaryComponent } from './homepage/summary/summary.component';
 import { ExperienceControlService } from "./services/experience-control.service";
 import { DynamicFormComponent } from './homepage/experiences/dynamic-form.component';
@@ -34,6 +35,7 @@ const ROUTES = [
     HomepageComponent,
     ContactComponent,
     InlineEditDirective,
+    AutoWidthDirective,
     SummaryComponent,
     DynamicFormComponent,
     DynamicFormFieldComponent,

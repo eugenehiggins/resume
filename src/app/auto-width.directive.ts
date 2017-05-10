@@ -1,9 +1,10 @@
-import { Directive, ElementRef, HostListener, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[autoWidth]'
 })
-export class InlineEditDirective {
+export class AutoWidthDirective {
+  @Input() theValue: string;
 
   private nativeElement: Node;
 
@@ -12,12 +13,23 @@ export class InlineEditDirective {
 
   }
 
-  @HostListener('click') onClick(){
-    // this.renderer.removeAttribute(this.nativeElement, 'readonly')
-    this.renderer.removeClass(this.nativeElement, 'form-control-static')
+  @HostListener('keyup') onKey() {
+
+    switch (this.nativeElement.nodeName) {
+      case "INPUT": {
+        console.log(this.nativeElement.nodeName, (<HTMLInputElement>this.nativeElement).value)
+        break;
+      }
+      case "TEXTAREA": {
+        console.log(this.nativeElement.nodeName, (<HTMLTextAreaElement>this.nativeElement).value)
+        break;
+      }
+    }
+
+    // this.renderer.removeClass(this.nativeElement, 'form-control-static')
   }
 
-  @HostListener('blur') onBlur(){
+  @HostListener('blur') onBlur() {
     this.renderer.addClass(this.nativeElement, 'form-control-static')
   }
 }
