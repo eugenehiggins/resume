@@ -13,38 +13,60 @@ import {FirebaseService} from "../../services/firebase.service";
         <!--</div>-->
       <!--</div>-->
       <div formArrayName="experiences">
-        <div *ngFor="let exp of experiences.controls; let n=index">
-          <ul formGroupName="{{n}}" class="form-inline">
-            <li *ngFor="let e of expArray[n] | keys" class="form-group">
-              <input [formControlName]="e" placeholder="Experience" class="form-control form-control-static">
-            </li>
-          </ul>
+        <div *ngFor="let experience of experiences.controls; let n=index">
+
+          <div formGroupName="{{n}}">
+            <span>
+            <input formControlName="companyName" />
+            </span>
+            <label>Job Title: </label>
+            <input formControlName="jobTitle" /><br>
+            <label>Years Worked: </label>
+            <input formControlName="yearsWorked" />
+          </div>
         </div>
       </div>
       <button>Submit</button>
     </form>
 
-    <pre>{{form.value | json}}</pre>
 
     <button (click)="addCity()">Add City</button>
     <button (click)="setPreset()">Set preset</button>
+
+   <!--<div *ngFor="let x of expArray | keys">-->
+     <!--<div *ngFor="let y of x | keys">-->
+       <!--<pre>{{ y }}</pre>-->
+     <!--</div>-->
+     <!---->
+   <!--</div>-->
+    
   `,
   styles: []
 })
 export class TestFormarrayComponent implements OnInit {
 
-  expArray = [
-    {
-      "companyName": "CNM",
-      "jobTitle": "Web developer II",
-      "yearsWorked": 3
+  expArray = {
+    "-Ki0W1AtZfqxPxEuzuB9" : {
+      "companyName" : "CNM",
+      "jobTitle" : "Web developer IIa",
+      "yearsWorked" : 3
     },
-    {
-      "companyName": "APS",
-      "jobTitle": "Course designer",
-      "yearsWorked": 2
+    "-Ki0W6lGQqm5PMZeDoKf" : {
+      "companyName" : "APS",
+      "jobTitle" : "Web developer IIb",
+      "yearsWorked" : 3
+    },
+    "-Ki0WFjhm917PP4mBOTT" : {
+      "companyName" : "UNM",
+      "jobTitle" : "Web Developer IIc",
+      "yearsWorked" : "2"
+    },
+    "-Ki0WK592PKyBGk-GbF2" : {
+      "companyName" : "Google",
+      "jobTitle" : "Web Developer IId",
+      "yearsWorked" : "3"
     }
-]
+  }
 
 
 
@@ -72,21 +94,26 @@ export class TestFormarrayComponent implements OnInit {
   }
 
   constructor(private firebaseService: FirebaseService) {
-    firebaseService.getExperiences()
-      .subscribe( x => console.log(x))
+    // firebaseService.getExperiences()
+    //   .subscribe( x => console.log(x))
   }
 
   ngOnInit() {
 
-    for (let experience in this.expArray ) {
+    for (let experienceObj in this.expArray ) {
+      // console.log(experienceObj)
       let fg: any = {};
-      for (let control in this.expArray[experience]) {
+      for (let key in this.expArray[experienceObj]) {
+        // console.log(key, this.expArray[experienceObj][key])
         // change here to read the object properties
-        fg[control] = new FormControl(this.expArray[experience][control])
+        fg[key] = new FormControl(this.expArray[experienceObj][key])
       }
 
       this.experiences.push(new FormGroup(fg))
     }
+    // console.log(this.expArray)
+    console.log(this.experiences)
+
   }
 
   form = new FormGroup({
