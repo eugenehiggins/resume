@@ -33,7 +33,7 @@ export class ContactComponent implements OnInit {
       .subscribe(
         status => {
           if (status === 200) {
-            console.log('howdy');
+            console.log('save');
           }
         }
       );
