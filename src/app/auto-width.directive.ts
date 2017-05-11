@@ -1,9 +1,9 @@
-import { Directive, ElementRef, HostListener, Input, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 
 @Directive({
   selector: '[autoWidth]'
 })
-export class AutoWidthDirective {
+export class AutoWidthDirective implements OnInit{
   @Input() theValue: string;
 
   private nativeElement: Node;
@@ -11,6 +11,21 @@ export class AutoWidthDirective {
   constructor(private renderer: Renderer2, private element: ElementRef) {
     this.nativeElement = element.nativeElement;
 
+  }
+
+  ngOnInit(){
+    switch (this.nativeElement.nodeName) {
+      case "INPUT": {
+        // console.log(this.nativeElement.nodeName, (<HTMLInputElement>this.nativeElement).width)
+        break;
+      }
+      case "TEXTAREA": {
+        const scrollHeight = (<HTMLTextAreaElement>this.nativeElement).scrollHeight;
+        console.log(scrollHeight)
+        this.renderer.setStyle(this.nativeElement, 'height', scrollHeight + 'px')
+        break;
+      }
+    }
   }
 
   @HostListener('keyup') onKey() {
@@ -22,6 +37,7 @@ export class AutoWidthDirective {
       }
       case "TEXTAREA": {
         const scrollHeight = (<HTMLTextAreaElement>this.nativeElement).scrollHeight;
+        console.log(scrollHeight)
         this.renderer.setStyle(this.nativeElement, 'height', scrollHeight + 'px')
         break;
       }
