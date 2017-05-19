@@ -18,7 +18,7 @@ import { SummaryComponent } from './homepage/summary/summary.component';
 import { ExperienceControlService } from "./services/experience-control.service";
 import { DynamicFormComponent } from './homepage/experiences/dynamic-form.component';
 import { DynamicFormFieldComponent } from './homepage/experiences/dynamic-form-field.component';
-import { TestFormarrayComponent } from './homepage/experiences/test-formarray.component';
+import { ExperiencesComponent } from './homepage/experiences/experiences.component';
 import { KeysPipe } from './keys.pipe';
 
 const ROUTES = [
@@ -39,7 +39,7 @@ const ROUTES = [
     SummaryComponent,
     DynamicFormComponent,
     DynamicFormFieldComponent,
-    TestFormarrayComponent,
+    ExperiencesComponent,
     KeysPipe
   ],
   imports: [

@@ -8,7 +8,7 @@ import { FieldTextboxModel } from "./field-textbox.model";
 import { FieldDropdownModel } from "./field-dropdown.model";
 
 @Component({
-  selector: 'experiences-form',
+  selector: 'old-experiences-form',
   templateUrl: './dynamic-form.component.html',
   styleUrls: ['./dynamic-form.component.scss']
 })
