@@ -1,6 +1,5 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { FirebaseService } from "../../services/firebase.service";
-import { FirebaseObjectObservable } from "angularfire2";
 import { Observable } from "rxjs/Observable";
 import { Contact } from "./contact.model";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";

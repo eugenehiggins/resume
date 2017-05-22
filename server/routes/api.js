@@ -118,6 +118,21 @@ router.post('/experiences/', (req,res) => {
     })
 });
 
+router.patch('/experiences/', (req,res) => {
+  "use strict";
+  let key = req.body.key;
+  let field = req.body.field;
+  let value = req.body.value;
+
+  let updates = {}
+  updates[`/resume/experiences/${key}/${field}`] = value;
+console.log(updates)
+  return firebase.database().ref().update(updates)
+    .then( reply => {
+      res.status(200).json(reply);
+    });
+})
+
 router.get('/experiences/', (req,res) => {
   "use strict";
   let ref = firebase.database().ref('/resume/experiences')

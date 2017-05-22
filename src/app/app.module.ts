@@ -9,7 +9,6 @@ import { RouterModule } from "@angular/router";
 import { PostsService } from "./posts.service";
 import { HomepageComponent } from './homepage/homepage.component';
 import { ContactComponent } from './homepage/contact/contact.component';
-import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { FirebaseService } from "./services/firebase.service";
 import { InlineEditDirective } from './inline-edit.directive';
@@ -47,7 +46,6 @@ const ROUTES = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    AngularFireModule.initializeApp(environment.firebase),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [

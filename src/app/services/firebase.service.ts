@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from "@angular/http";
-import { AngularFire, FirebaseObjectObservable } from "angularfire2";
 import { Observable } from "rxjs/Observable";
 import 'rxjs/add/operator/share';
 import { Contact } from "../homepage/contact/contact.model";
@@ -9,7 +8,6 @@ import { Contact } from "../homepage/contact/contact.model";
 export class FirebaseService {
 
   constructor(
-    private af: AngularFire,
     private http: Http
   ) { }
 
@@ -58,6 +56,14 @@ export class FirebaseService {
     let headers = new Headers({ 'content-type': 'application/json' });
     let options = new RequestOptions({ headers: headers });
     return this.http.post('api/experiences', experience, options)
+      .map( res => res.status);
+  }
+
+  updateExperience(key, field, value){
+    let body: string = JSON.stringify({key: key, field: field, value: value})
+    let headers = new Headers({ 'content-type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+    return this.http.patch(`api/experiences/`, body, options)
       .map( res => res.status);
   }
 
