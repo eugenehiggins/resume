@@ -113,6 +113,7 @@ export class ExperiencesComponent implements OnInit {
   // so later when the blur event happens it can be compared to see if
   // the db needs to be updated
   onFocus(event) {
+    console.log(this.focusedFieldValue)
     let el = this.el.nativeElement = event.target;
     this.focusedFieldValue = el.value;
   }

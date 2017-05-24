@@ -17,7 +17,8 @@ export class InlineEditDirective {
     this.renderer.removeClass(this.nativeElement, 'form-control-static')
   }
 
-  @HostListener('blur') onBlur(){
+  @HostListener('blur', ['$event']) onBlur(event){
+    // console.log(event.target)
     this.renderer.addClass(this.nativeElement, 'form-control-static')
   }
 }
