@@ -1,11 +1,12 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { FirebaseService } from "../../services/firebase.service";
-
+import * as marked from 'marked';
 
 @Component({
   selector: 'experiences-form',
   template: `
+    
     <form class="form-inline col-6" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div formArrayName="cities">
         <div *ngFor="let city of cities.controls; let i=index">
@@ -27,6 +28,16 @@ import { FirebaseService } from "../../services/firebase.service";
           <input (focus)=onFocus($event) (blur)=onBlur($event) formControlName="yearsWorked" id="yearsWorked"
                  class="form-control form-control-static col-sm-4 mb-2 mr-sm-2 mb-sm-0"/>
 
+          <label for="summary" class="sr-only">Summary</label>
+          <textarea rows="5" type="text" inlineEdit Markdown
+                    (focus)=onFocus($event)
+                    (blur)=onBlur($event) 
+                    formControlName="summary" id="summary" 
+                    class="form-control form-control-static hidden"></textarea>
+          <div class="summaryMarkdown,visible" 
+               (click)="editSummary($event)"
+               id="summaryDiv" [innerHtml]="convertMarkdownToHtml(experience.get('summary').value)"></div>
+          
           <input type="hidden" formControlName="key" id="key">
 
           <!--<label class="sr-only" for="summary">Summary </label>-->
@@ -50,9 +61,16 @@ import { FirebaseService } from "../../services/firebase.service";
     <!--</div>-->
 
   `,
-  styles: []
+  styles: [`
+    .hidden { display: none }
+    .visible { display: block }
+    textarea { min-width: 100% }
+  `]
 })
 export class ExperiencesComponent implements OnInit {
+
+  private md: MarkedStatic;
+  someMarkdown: string;
 
   focusedFieldValue: string;
 
@@ -105,7 +123,25 @@ export class ExperiencesComponent implements OnInit {
   }
 
   constructor(private firebaseService: FirebaseService,
-              private el: ElementRef) {
+              private el: ElementRef,
+              private renderer: Renderer2
+              ) {
+
+  }
+
+  convertMarkdownToHtml(markdown: string) {
+    return this.md.parse(markdown);
+  }
+
+  editSummary(event){
+    let el = this.el.nativeElement = event.target;
+    console.log(el,el.closest('#summaryDiv'))
+    let summaryDiv = el.closest('#summaryDiv');
+    // console.log(el.parentElement.parentElement.parentElement.children['summary'])
+    let summaryControl = el.closest('.form-group').children['summary'];
+    this.renderer.removeClass(summaryControl, 'hidden');
+    summaryControl.focus();
+    this.renderer.addClass(summaryDiv, 'hidden')
 
   }
 
@@ -113,7 +149,6 @@ export class ExperiencesComponent implements OnInit {
   // so later when the blur event happens it can be compared to see if
   // the db needs to be updated
   onFocus(event) {
-    console.log(this.focusedFieldValue)
     let el = this.el.nativeElement = event.target;
     this.focusedFieldValue = el.value;
   }
@@ -121,6 +156,7 @@ export class ExperiencesComponent implements OnInit {
   // when user clicks away from the field, save the value
   // but only if it is a new value
   onBlur(event) {
+
     let el = this.el.nativeElement = event.target;
     if (this.focusedFieldValue !== el.value) {
       let key = el.parentElement.children['key'].value;
@@ -131,6 +167,12 @@ export class ExperiencesComponent implements OnInit {
         .subscribe();
     }
     this.focusedFieldValue = "";
+
+    if (el.id === 'summary'){
+      this.renderer.addClass(el, 'hidden');
+      let summaryDiv = el.parentElement.children['summaryDiv'];
+      this.renderer.removeClass(summaryDiv, 'hidden');
+    }
   }
 
   ngOnInit() {
@@ -142,18 +184,26 @@ export class ExperiencesComponent implements OnInit {
           this.transformExperiences();
         }
       )
-
+    this.md = marked;
+    this.md.setOptions({
+      renderer: new marked.Renderer(),
+      gfm: true,
+      tables: true,
+      breaks: false,
+      pedantic: false,
+      sanitize: true,
+      smartLists: true,
+      smartypants: false
+    })
   }
 
   transformExperiences() {
     for (let experienceObj in this.expObj) {
-      // console.log(experienceObj)
       let fg: any = {};
       for (let key in this.expObj[experienceObj]) {
-
-        // change here to read the object properties
         fg[key] = new FormControl(this.expObj[experienceObj][key])
       }
+
       fg["key"] = new FormControl(experienceObj);
       this.experiences.push(new FormGroup(fg))
     }

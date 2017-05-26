@@ -46,7 +46,8 @@ const ROUTES = [
     FormsModule,
     ReactiveFormsModule,
     HttpModule,
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+
   ],
   providers: [
     PostsService,
