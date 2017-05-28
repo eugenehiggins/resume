@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { AbstractControl, FormArray, FormControl, FormGroup } from '@angular/forms';
 import { FirebaseService } from "../../services/firebase.service";
 import * as marked from 'marked';
@@ -7,7 +7,7 @@ import * as marked from 'marked';
   selector: 'experiences-form',
   template: `
     <h2>Employment Experience</h2>
-    <form class="form-inline col-6" [formGroup]="form" (ngSubmit)="onSubmit()">
+    <form class="form-inline col-8" [formGroup]="form" (ngSubmit)="onSubmit()">
       <div formArrayName="cities">
         <div *ngFor="let city of cities.controls; let i=index">
           <input [formControlName]="i" placeholder="City">
@@ -17,8 +17,8 @@ import * as marked from 'marked';
 
         <div formGroupName="{{n}}" class="form-group row">
           <label class="sr-only" for="companyName">Job Title: </label>
-          <input formControlName="companyName" id="companyName-{{n}}"
-                 class="form-control form-control-static col-sm-3 mb-2 mr-sm-2 mb-sm-0"/>
+          <input autoWidth formControlName="companyName" id="companyName-{{n}}"
+                 class="form-control form-control-static "/>
 
           <label class="sr-only" for="jobTitle">Job Title: </label>
           <input formControlName="jobTitle" id="jobTitle"
@@ -68,7 +68,7 @@ import * as marked from 'marked';
   `]
 })
 export class ExperiencesComponent implements OnInit {
-
+  @Output() experiencesLoaded = new EventEmitter<boolean>();
   private md: MarkedStatic;
   someMarkdown: string;
 
@@ -207,6 +207,7 @@ export class ExperiencesComponent implements OnInit {
       fg["key"] = new FormControl(experienceObj);
       this.experiences.push(new FormGroup(fg))
     }
+    this.experiencesLoaded.emit(true);
   }
 
   form = new FormGroup({

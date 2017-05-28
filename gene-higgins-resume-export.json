@@ -7,5 +7,34 @@
     "state" : "NM",
     "zip" : "87102"
   },
-  "summary" : "Ad tail turkey, salami brisket lorem eiusmod in t-bone capicola jerky andouille.  Turducken capicola aliquip, est laborum sirloin pork ham hock anim.  Short ribs short loin flank rump occaecat.  Alcatra ground round irure cillum dolor et.  Minim anim eu dolore aliquip pig, jerky adipisicing do reprehenderit occaecat pancetta."
+  "experiences" : {
+    "-Ki0W1AtZfqxPxEuzuB9" : {
+      "companyName" : "CNM",
+      "jobTitle" : "Web developer IIa",
+      "summary" : "* I am developing a new design for cnm.edu in Plone 5\n* Front-end development (JavaScript, CSS, & HTML) for mile.cnm.edu using modern, responsive techniques (flex-box, media queries) \n* Managed git workflow and custom development for the Stemulus Center’s Wordpress Multisite\n* Managed and modified various enterprise applications for CNM’s IT department.\n* Works with curriculum experts and subject matter experts to create measurable, competency-based education materials intended for distance learning.\n* Analyzes online courses to determine compliance with Quality Matters standards.\n* Creates online courses using a learning managements system (Blackboard Learn)\n* Assists and trains instructors in the use and best practice of distance education.\n* Administers the back end of the learning management system, Blackboard Learn.",
+      "summary0" : "* Developing a new design for cnm.edu in Plone 5\n* Front-end development (JavaScript, CSS, & HTML) for mile.cnm.edu using modern, responsive techniques (flex-box, media queries) \n* Managed git workflow and custom development for the Stemulus Center’s Wordpress Multisite\n* Managed and modified various enterprise applications for CNM’s IT department.\n* Works with curriculum experts and subject matter experts to create measurable, competency-based education materials intended for distance learning.\n* Analyzes online courses to determine compliance with Quality Matters standards.\n* Creates online courses using a learning managements system (Blackboard Learn)\n* Assists and trains instructors in the use and best practice of distance education.\n* Administers the back end of the learning management system, Blackboard Learn.f ",
+      "yearsWorked" : "11"
+    },
+    "-Ki0W6lGQqm5PMZeDoKf" : {
+      "companyName" : "CNM",
+      "jobTitle" : "Web developer IIb",
+      "summary" : "* first thing\n* second thing\n* third",
+      "summary1" : "* Developing a new design for cnm.edu in Plone 5\n* Front-end development (JavaScript, CSS, & HTML) for mile.cnm.edu using modern, responsive techniques (flex-box, media queries) \n* Managed git workflow and custom development for the Stemulus Center’s Wordpress Multisite\n* Managed and modified various enterprise applications for CNM’s IT department.\n* Works with curriculum experts and subject matter experts to create measurable, competency-based education materials intended for distance learning.\n* Analyzes online courses to determine compliance with Quality Matters standards.\n* Creates online courses using a learning managements system (Blackboard Learn)\n* Assists and trains instructors in the use and best practice of distance education.\n* Administers the back end of the learning management system, Blackboard Learn.\n ",
+      "yearsWorked" : "2"
+    },
+    "-Ki0WFjhm917PP4mBOTT" : {
+      "companyName" : "CNM",
+      "jobTitle" : "Web Developer IIc",
+      "summary" : "askdljf a;sfjk a;sdf",
+      "summary2" : "* Item 1\n* Item 2\n  * Item 2a\n  * Item 2b",
+      "yearsWorked" : "3"
+    },
+    "-Ki0WK592PKyBGk-GbF2" : {
+      "companyName" : "CNMs",
+      "jobTitle" : "Web Developer IId",
+      "summary" : "a;skldfj as;fdkj asf",
+      "yearsWorked" : "4"
+    }
+  },
+  "summary" : "Ad tail turkey, salami brasdfisket lorem e iusmod dssinadf sadf jfchgfcsa sdsdfad  fpas  dssdafsad fsdfasdfs adfasd fsdfsdfsadfasdfas dfasdfsdfddddddd ddddd\ndfasdfdssdfasdfasdf\nasdf jerky andouille.  Turducken asdfasdf asdfasdfcapicola aliquip, est laborum sirloin pork ham hock anim.  Short ribs short loin"
 }
