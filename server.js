@@ -8,7 +8,7 @@ const mongoose = require('mongoose');
 const api = require('./server/routes/api')
 
 const app = express();
-mongoose.connect('localhost:27017/resume');
+mongoose.connect('localhost:27017/resumes');
 
 
 // Parsers for Post data

@@ -18,7 +18,8 @@ import { ExperienceControlService } from "./services/experience-control.service"
 import { DynamicFormComponent } from './homepage/experiences/dynamic-form.component';
 import { DynamicFormFieldComponent } from './homepage/experiences/dynamic-form-field.component';
 import { ExperiencesComponent } from './homepage/experiences/experiences.component';
-import { KeysPipe } from './keys.pipe';
+import {MongoService} from "./services/mongo.service";
+// import { KeysPipe } from './keys.pipe';
 
 const ROUTES = [
   {
@@ -39,7 +40,7 @@ const ROUTES = [
     DynamicFormComponent,
     DynamicFormFieldComponent,
     ExperiencesComponent,
-    KeysPipe
+    // KeysPipe
   ],
   imports: [
     BrowserModule,
@@ -52,6 +53,7 @@ const ROUTES = [
   providers: [
     PostsService,
     FirebaseService,
+    MongoService,
     ExperienceControlService
   ],
   bootstrap: [AppComponent]
