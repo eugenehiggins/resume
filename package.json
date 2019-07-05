@@ -24,7 +24,7 @@
     "core-js": "^2.4.1",
     "firebase": "^3.7.5",
     "firebase-admin": "^4.2.0",
-    "marked": "^0.3.6",
+    "marked": "^0.4.0",
     "prism": "^4.1.1",
     "rx-firebase": "^0.4.0",
     "rxjs": "^5.1.0",
