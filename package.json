@@ -22,7 +22,7 @@
     "@angular/router": "^4.0.0",
     "axios": "^0.21.1",
     "core-js": "^2.4.1",
-    "firebase": "^3.7.5",
+    "firebase": "^4.5.1",
     "firebase-admin": "^4.2.0",
     "marked": "^0.3.6",
     "prism": "^4.1.1",
